@@ -32,8 +32,8 @@ const Header: React.FC<HeaderProps> = ({ onSearch, searchQuery }) => {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <span>Frete Grátis acima de R$ 199</span>
-            <span>Parcelamos em até 12x</span>
+            <span></span>
+            <span></span>
           </div>
         </div>
       </div>
@@ -43,11 +43,11 @@ const Header: React.FC<HeaderProps> = ({ onSearch, searchQuery }) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">AP</span>
+            <div className="w-20 h-20 rounded-lg overflow-hidden flex items-center justify-center bg-white">
+               <img src="https://jekatruck.com.br/wp-content/uploads/2021/01/cropped-logo_small-1.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-blue-900">AutoPeças</h1>
+              <h1 className="text-2xl font-bold text-blue-900">JEKA TRUCK</h1>
               <p className="text-sm text-gray-600">Qualidade e Confiança</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, searchQuery }) => {
           <div className="flex items-center space-x-4">
             <button className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-blue-900 transition-colors">
               <User className="w-6 h-6" />
-              <span>Minha Conta</span>
+              <span></span>
             </button>
 
             {/* Mobile menu button */}

@@ -10,7 +10,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({ product, searchQuery }) => {
   React.useEffect(() => {
     if (product) {
       // Update page title for product
-      document.title = `${product.code} - ${product.name} | AutoPeças - Qualidade e Confiança`;
+      document.title = `${product.code} - ${product.name} | Jeka Truck - Qualidade e Confiança`;
       
       // Update meta description
       const metaDescription = document.querySelector('meta[name="description"]') as HTMLMetaElement;
@@ -57,19 +57,19 @@ const SEOHead: React.FC<SEOHeadProps> = ({ product, searchQuery }) => {
       }
     } else if (searchQuery) {
       // Update title for search
-      document.title = `Busca: ${searchQuery} | AutoPeças - Qualidade e Confiança`;
+      document.title = `Busca: ${searchQuery} | Jeka Truck - Qualidade e Confiança`;
       
       const metaDescription = document.querySelector('meta[name="description"]') as HTMLMetaElement;
       if (metaDescription) {
-        metaDescription.content = `Resultados da busca para "${searchQuery}" - AutoPeças com qualidade e garantia. Encontre peças para seu veículo com os melhores preços.`;
+        metaDescription.content = `Resultados da busca para "${searchQuery}" - Jeka Truck com qualidade e garantia. Encontre peças para seu veículo com os melhores preços.`;
       }
     } else {
       // Default homepage
-      document.title = 'AutoPeças - Qualidade e Confiança | Peças Automotivas Online';
+      document.title = 'Jeka Truck - Qualidade e Confiança | Peças Automotivas Online';
       
       const metaDescription = document.querySelector('meta[name="description"]') as HTMLMetaElement;
       if (metaDescription) {
-        metaDescription.content = 'Loja online de autopeças com qualidade e garantia. Filtros, freios, ignição, suspensão e mais. Entrega rápida e parcelamento em até 12x.';
+        metaDescription.content = 'Loja da Jeka Truck com qualidade e garantia. Filtros, freios, ignição, suspensão e mais.';
       }
     }
 
@@ -82,9 +82,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({ product, searchQuery }) => {
     }
     
     if (product) {
-      keywordsMeta.content = `${product.code}, ${product.name}, ${product.brand}, ${product.tags.join(', ')}, autopeças, peças automotivas`;
+      keywordsMeta.content = `${product.code}, ${product.name}, ${product.brand}, ${product.tags.join(', ')}, , peças automotivas`;
     } else {
-      keywordsMeta.content = 'autopeças, peças automotivas, filtros, freios, ignição, suspensão, bateria, pneus, loja online';
+      keywordsMeta.content = ', peças automotivas, filtros, freios, ignição, suspensão, bateria, pneus, loja online';
     }
 
   }, [product, searchQuery]);

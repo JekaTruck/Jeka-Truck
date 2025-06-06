@@ -38,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isLoading }) => {
             <span className="text-white font-bold text-2xl">AP</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Painel Admin</h1>
-          <p className="text-gray-600 mt-2">AutoPeças - Gestão de Produtos</p>
+          <p className="text-gray-600 mt-2"> - Gestão de Produtos</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

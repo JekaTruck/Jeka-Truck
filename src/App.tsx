@@ -113,16 +113,16 @@ function App() {
       <Header onSearch={setSearchQuery} searchQuery={searchQuery} />
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
-          <aside className="lg:w-64 flex-shrink-0">
-            <Filters
-              filters={filters}
-              onFiltersChange={setFilters}
-              isOpen={isFiltersOpen}
-              onToggle={() => setIsFiltersOpen(!isFiltersOpen)}
-            />
-          </aside>
+  <div className="flex flex-col lg:flex-row gap-8">
+    {/* Filters Sidebar */}
+    <aside className="lg:w-64 flex-shrink-0">
+      <Filters
+        filters={filters}
+        onFiltersChange={setFilters}
+        isOpen={isFiltersOpen}
+        onToggle={() => setIsFiltersOpen(!isFiltersOpen)}
+      />
+    </aside>
 
           {/* Main Content */}
           <div className="flex-1">
@@ -139,12 +139,6 @@ function App() {
               </div>
 
               <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-                <Filters
-                  filters={filters}
-                  onFiltersChange={setFilters}
-                  isOpen={isFiltersOpen}
-                  onToggle={() => setIsFiltersOpen(!isFiltersOpen)}
-                />
                 <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
                   <option>Ordenar por</option>
                   <option>Menor preço</option>
@@ -209,12 +203,12 @@ function App() {
                   <span className="text-white font-bold text-xl">AP</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">AutoPeças</h3>
+                  <h3 className="text-xl font-bold">JEKA TRUCK</h3>
                   <p className="text-sm text-blue-300">Qualidade e Confiança</p>
                 </div>
               </div>
               <p className="text-blue-200 text-sm">
-                Sua loja online de autopeças com qualidade garantida e os melhores preços do mercado.
+                Contamos com segurança e preços que cabem no seu bolso.
               </p>
             </div>
 
@@ -252,7 +246,7 @@ function App() {
           </div>
 
           <div className="border-t border-blue-800 mt-8 pt-8 text-center text-sm text-blue-200">
-            <p>&copy; 2024 AutoPeças. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Jeka Truck. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

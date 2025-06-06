@@ -28,12 +28,12 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, children }) =
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AP</span>
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white">
+                 <img src="https://jekatruck.com.br/wp-content/uploads/2021/01/cropped-logo_small-1.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h1 className="text-xl font-bold">Admin Panel</h1>
-                <p className="text-sm text-blue-300">AutoPeças</p>
+                <p className="text-sm text-blue-300">Jeka Truck</p>
               </div>
             </div>
             <button
