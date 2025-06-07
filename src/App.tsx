@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal';
@@ -8,22 +9,16 @@ import AdminPanel from './components/admin/AdminPanel';
 import { useProducts } from './hooks/useProducts';
 import { Product, SearchFilters } from './types/product';
 
-function App() {
+// HomePage separada para usar nas rotas
+function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [filters, setFilters] = useState<SearchFilters>({});
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [isAdminMode, setIsAdminMode] = useState(false);
 
   const { products, isLoading } = useProducts();
-
-  // Check if we're in admin mode based on URL
-  useEffect(() => {
-    const path = window.location.pathname;
-    setIsAdminMode(path === '/admin' || path.startsWith('/admin/'));
-  }, []);
 
   useEffect(() => {
     let filtered = products;
@@ -75,11 +70,6 @@ function App() {
     setFilteredProducts(filtered);
   }, [searchQuery, filters, products]);
 
-  // Admin mode routing
-  if (isAdminMode) {
-    return <AdminPanel />;
-  }
-
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
     setIsProductModalOpen(true);
@@ -113,16 +103,16 @@ function App() {
       <Header onSearch={setSearchQuery} searchQuery={searchQuery} />
 
       <main className="container mx-auto px-4 py-8">
-  <div className="flex flex-col lg:flex-row gap-8">
-    {/* Filters Sidebar */}
-    <aside className="lg:w-64 flex-shrink-0">
-      <Filters
-        filters={filters}
-        onFiltersChange={setFilters}
-        isOpen={isFiltersOpen}
-        onToggle={() => setIsFiltersOpen(!isFiltersOpen)}
-      />
-    </aside>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Filters Sidebar */}
+          <aside className="lg:w-64 flex-shrink-0">
+            <Filters
+              filters={filters}
+              onFiltersChange={setFilters}
+              isOpen={isFiltersOpen}
+              onToggle={() => setIsFiltersOpen(!isFiltersOpen)}
+            />
+          </aside>
 
           {/* Main Content */}
           <div className="flex-1">
@@ -240,7 +230,7 @@ function App() {
                 <li><a href="#" className="hover:text-white transition-colors">Políticas de troca</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Garantia</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contato</a></li>
-                <li><a href="/admin" className="hover:text-white transition-colors text-xs opacity-50">Admin</a></li>
+                <li><a href="/Jeka-Truck/admin" className="hover:text-white transition-colors text-xs opacity-50">Admin</a></li>
               </ul>
             </div>
           </div>
@@ -251,6 +241,18 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter basename="/Jeka-Truck">
+      <Routes>
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
