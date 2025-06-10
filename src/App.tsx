@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
@@ -249,7 +249,6 @@ function App() {
     <BrowserRouter basename="/Jeka-Truck">
       <Routes>
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/" element={<HomePage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>

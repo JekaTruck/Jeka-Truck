@@ -9,9 +9,6 @@ interface ProductFormProps {
   isOpen: boolean;
 }
 
-const brands = ['Bosch', 'Tecfil', 'NGK', 'Monroe', 'Moura', 'Goodyear'];
-const categories = ['Filtros', 'Freios', 'Ignição', 'Suspensão', 'Elétrica', 'Pneus'];
-
 const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel, isOpen }) => {
   const [formData, setFormData] = useState<Omit<Product, 'id'>>({
     code: '',
@@ -31,9 +28,21 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel, is
     warranty: ''
   });
 
+  const [brands, setBrands] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [newBrand, setNewBrand] = useState('');
+  const [newCategory, setNewCategory] = useState('');
   const [newSpec, setNewSpec] = useState({ key: '', value: '' });
   const [newVehicle, setNewVehicle] = useState('');
   const [newTag, setNewTag] = useState('');
+
+  useEffect(() => {
+    // Carrega marcas e categorias do localStorage sempre que o modal abrir
+    const savedBrands = localStorage.getItem('brands');
+    const savedCategories = localStorage.getItem('categories');
+    setBrands(savedBrands ? JSON.parse(savedBrands) : []);
+    setCategories(savedCategories ? JSON.parse(savedCategories) : []);
+  }, [isOpen]);
 
   useEffect(() => {
     if (product) {
@@ -146,6 +155,28 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel, is
     }));
   };
 
+  // Função para adicionar nova marca
+  const handleAddBrand = () => {
+    if (newBrand.trim() && !brands.includes(newBrand.trim())) {
+      const updatedBrands = [...brands, newBrand.trim()];
+      setBrands(updatedBrands);
+      localStorage.setItem('brands', JSON.stringify(updatedBrands));
+      setFormData(prev => ({ ...prev, brand: newBrand.trim() }));
+      setNewBrand('');
+    }
+  };
+
+  // Função para adicionar nova categoria
+  const handleAddCategory = () => {
+    if (newCategory.trim() && !categories.includes(newCategory.trim())) {
+      const updatedCategories = [...categories, newCategory.trim()];
+      setCategories(updatedCategories);
+      localStorage.setItem('categories', JSON.stringify(updatedCategories));
+      setFormData(prev => ({ ...prev, category: newCategory.trim() }));
+      setNewCategory('');
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -189,38 +220,76 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel, is
               />
             </div>
 
+            {/* Marca */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Marca *
               </label>
-              <select
-                value={formData.brand}
-                onChange={(e) => setFormData(prev => ({ ...prev, brand: e.target.value }))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                required
-              >
-                <option value="">Selecione uma marca</option>
-                {brands.map(brand => (
-                  <option key={brand} value={brand}>{brand}</option>
-                ))}
-              </select>
+              <div className="flex space-x-2">
+                <select
+                  value={formData.brand}
+                  onChange={(e) => setFormData(prev => ({ ...prev, brand: e.target.value }))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  required
+                >
+                  <option value="">Selecione uma marca</option>
+                  {brands.map(brand => (
+                    <option key={brand} value={brand}>{brand}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex mt-2 space-x-2">
+                <input
+                  type="text"
+                  value={newBrand}
+                  onChange={e => setNewBrand(e.target.value)}
+                  placeholder="Adicionar nova marca"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                />
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                  onClick={handleAddBrand}
+                >
+                  Adicionar
+                </button>
+              </div>
             </div>
 
+            {/* Categoria */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Categoria *
               </label>
-              <select
-                value={formData.category}
-                onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                required
-              >
-                <option value="">Selecione uma categoria</option>
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
-              </select>
+              <div className="flex space-x-2">
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  required
+                >
+                  <option value="">Selecione uma categoria</option>
+                  {categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex mt-2 space-x-2">
+                <input
+                  type="text"
+                  value={newCategory}
+                  onChange={e => setNewCategory(e.target.value)}
+                  placeholder="Adicionar nova categoria"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                />
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                  onClick={handleAddCategory}
+                >
+                  Adicionar
+                </button>
+              </div>
             </div>
 
             <div>
