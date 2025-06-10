@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { LogOut, Package, Plus, Settings, Menu, X } from 'lucide-react';
+import { LogOut, Package, Settings, Menu, X } from 'lucide-react';
 import { User } from '../../types/admin';
 
 interface AdminLayoutProps {
@@ -10,7 +10,7 @@ interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, onAddProduct, children }) => {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -51,13 +51,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, onAddProduct,
               <Package className="w-5 h-5" />
               <span>Produtos</span>
             </a>
-            <button
-              onClick={onAddProduct}
-              className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors w-full"
-            >
-              <Plus className="w-5 h-5" />
-              <span>Adicionar Produto</span>
-            </button>
+  {/* Remova ou comente o botão abaixo */}
+  {/*
+  <a href="#" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors">
+    <Plus className="w-5 h-5" />
+    <span>Adicionar Produto</span>
+  </a>
+  */}
             <a href="#" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors">
               <Settings className="w-5 h-5" />
               <span>Configurações</span>
