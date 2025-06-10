@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { LogOut, Package, Plus, Settings, Menu, X } from 'lucide-react';
 import { User } from '../../types/admin';
@@ -5,10 +6,11 @@ import { User } from '../../types/admin';
 interface AdminLayoutProps {
   user: User;
   onLogout: () => void;
+  onAddProduct: () => void; // Adicionada prop
   children: React.ReactNode;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, children }) => {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, onAddProduct, children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -49,10 +51,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ user, onLogout, children }) =
               <Package className="w-5 h-5" />
               <span>Produtos</span>
             </a>
-            <a href="#" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors">
+            <button
+              onClick={onAddProduct}
+              className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors w-full"
+            >
               <Plus className="w-5 h-5" />
               <span>Adicionar Produto</span>
-            </a>
+            </button>
             <a href="#" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition-colors">
               <Settings className="w-5 h-5" />
               <span>Configurações</span>

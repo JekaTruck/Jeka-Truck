@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit, Trash2, Plus, Search, Eye, Package } from 'lucide-react';
+import { Edit, Trash2, Search, Eye, Package } from 'lucide-react';
 import { Product } from '../../types/product';
 
 interface ProductListProps {
@@ -10,7 +10,7 @@ interface ProductListProps {
   onView: (product: Product) => void;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, onEdit, onDelete, onAdd, onView }) => {
+const ProductList: React.FC<ProductListProps> = ({ products, onEdit, onDelete, onView }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -38,6 +38,7 @@ const ProductList: React.FC<ProductListProps> = ({ products, onEdit, onDelete, o
           <h1 className="text-3xl font-bold text-gray-900">Produtos</h1>
           <p className="text-gray-600">{filteredProducts.length} produto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}</p>
         </div>
+        {/* 
         <button
           onClick={onAdd}
           className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center space-x-2 transition-colors"
@@ -45,6 +46,7 @@ const ProductList: React.FC<ProductListProps> = ({ products, onEdit, onDelete, o
           <Plus className="w-5 h-5" />
           <span>Adicionar Produto</span>
         </button>
+        */}
       </div>
 
       {/* Filters */}

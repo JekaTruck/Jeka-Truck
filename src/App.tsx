@@ -5,7 +5,7 @@ import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal';
 import Filters from './components/Filters';
 import SEOHead from './components/SEOHead';
-import AdminPanel from './components/admin/AdminPanel';
+import { AdminPanel } from './components/admin/AdminPanel';
 import { useProducts } from './hooks/useProducts';
 import { Product, SearchFilters } from './types/product';
 

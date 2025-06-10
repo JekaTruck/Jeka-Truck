@@ -8,7 +8,7 @@ import ProductForm from './ProductForm';
 import ProductModal from '../ProductModal';
 import { Product } from '../../types/product';
 
-const AdminPanel: React.FC = () => {
+export const AdminPanel: React.FC = () => {
   const { user, isAuthenticated, isLoading, login, logout } = useAuth();
   const { products, addProduct, updateProduct, deleteProduct } = useProducts();
   
@@ -65,28 +65,26 @@ const AdminPanel: React.FC = () => {
   };
 
   return (
-    <AdminLayout user={user!} onLogout={logout}>
-      <ProductList
+  <AdminLayout user={user!} onLogout={logout} onAddProduct={handleAddProduct}>
+    <ProductList
         products={products}
-        onAdd={handleAddProduct}
         onEdit={handleEditProduct}
         onDelete={deleteProduct}
-        onView={handleViewProduct}
-      />
-
-      <ProductForm
-        product={editingProduct || undefined}
-        isOpen={isFormOpen}
-        onSave={handleSaveProduct}
-        onCancel={handleCancelForm}
-      />
-
-      <ProductModal
-        product={viewingProduct}
-        isOpen={!!viewingProduct}
-        onClose={handleCloseView}
-      />
-    </AdminLayout>
+        onView={handleViewProduct} onAdd={function (): void {
+          throw new Error('Function not implemented.');
+        } }    />
+    <ProductForm
+      product={editingProduct || undefined}
+      isOpen={isFormOpen}
+      onSave={handleSaveProduct}
+      onCancel={handleCancelForm}
+    />
+    <ProductModal
+      product={viewingProduct}
+      isOpen={!!viewingProduct}
+      onClose={handleCloseView}
+    />
+  </AdminLayout>
   );
 };
 
