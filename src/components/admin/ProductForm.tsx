@@ -221,76 +221,72 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel, is
             </div>
 
             {/* Marca */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Marca *
-              </label>
-              <div className="flex space-x-2">
-                <select
-                  value={formData.brand}
-                  onChange={(e) => setFormData(prev => ({ ...prev, brand: e.target.value }))}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                  required
-                >
-                  <option value="">Selecione uma marca</option>
-                  {brands.map(brand => (
-                    <option key={brand} value={brand}>{brand}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex mt-2 space-x-2">
-                <input
-                  type="text"
-                  value={newBrand}
-                  onChange={e => setNewBrand(e.target.value)}
-                  placeholder="Adicionar nova marca"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                />
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
-                  onClick={handleAddBrand}
-                >
-                  Adicionar
-                </button>
-              </div>
-            </div>
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">
+    Marca *
+  </label>
+  <select
+    value={formData.brand}
+    onChange={(e) => setFormData(prev => ({ ...prev, brand: e.target.value }))}
+    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+    required
+  >
+    <option value="">Selecione uma marca</option>
+    {brands.map(brand => (
+      <option key={brand} value={brand}>{brand}</option>
+    ))}
+  </select>
+  <div className="flex mt-2 space-x-2">
+    <input
+      type="text"
+      value={newBrand}
+      onChange={e => setNewBrand(e.target.value)}
+      placeholder="Adicionar nova marca"
+      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+    />
+    <button
+      type="button"
+      className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+      onClick={handleAddBrand}
+    >
+      Adicionar
+    </button>
+  </div>
+</div>
 
-            {/* Categoria */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Categoria *
-              </label>
-              <div className="flex space-x-2">
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                  required
-                >
-                  <option value="">Selecione uma categoria</option>
-                  {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex mt-2 space-x-2">
-                <input
-                  type="text"
-                  value={newCategory}
-                  onChange={e => setNewCategory(e.target.value)}
-                  placeholder="Adicionar nova categoria"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                />
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
-                  onClick={handleAddCategory}
-                >
-                  Adicionar
-                </button>
-              </div>
-            </div>
+{/* Categoria */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">
+    Categoria *
+  </label>
+  <select
+    value={formData.category}
+    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+    required
+  >
+    <option value="">Selecione uma categoria</option>
+    {categories.map(category => (
+      <option key={category} value={category}>{category}</option>
+    ))}
+  </select>
+  <div className="flex mt-2 space-x-2">
+    <input
+      type="text"
+      value={newCategory}
+      onChange={e => setNewCategory(e.target.value)}
+      placeholder="Adicionar nova categoria"
+      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+    />
+    <button
+      type="button"
+      className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+      onClick={handleAddCategory}
+    >
+      Adicionar
+    </button>
+  </div>
+</div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
